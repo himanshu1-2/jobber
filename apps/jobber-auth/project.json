@@ -6,17 +6,8 @@
   "tags": [],
   "targets": {
     "build": {
-      "dependsOn": ["generate-types"],
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "webpack-cli build",
-        "args": ["node-env=production"]
-      },
-      "configurations": {
-        "development": {
-          "args": ["node-env=development"]
-        }
-      }
+      "dependsOn": ["generate-types"]
+     
     },
     "serve": {
       "continuous": true,
@@ -42,17 +33,17 @@
       }
     },
     "generate-types":{
-      "command": "primsa generate",
+      "command": "prisma generate",
       "options": {
         "cwd":"apps/jobber-auth"
       }
     },
     "migrate":{
-      "command": "primsa migrate dev",
+      "command": "prisma migrate dev",
       "options": {
         "cwd":"apps/jobber-auth"
       }
-    },
+    }
 
   }
 }
