@@ -7,7 +7,6 @@
   "targets": {
     "build": {
       "dependsOn": ["generate-types"]
-     
     },
     "serve": {
       "continuous": true,
@@ -29,21 +28,21 @@
     },
     "test": {
       "options": {
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "dependsOn": ["generate-types"]
       }
     },
-    "generate-types":{
+    "generate-types": {
       "command": "prisma generate",
       "options": {
-        "cwd":"apps/jobber-auth"
+        "cwd": "apps/jobber-auth"
       }
     },
-    "migrate":{
+    "migrate": {
       "command": "prisma migrate dev",
       "options": {
-        "cwd":"apps/jobber-auth"
+        "cwd": "apps/jobber-auth"
       }
     }
-
   }
 }
