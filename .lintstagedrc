@@ -1,0 +1,4 @@
+{
+    "*.ts":["nx affected:lint --fix --files"],
+    "*":["nex format:write --files"]
+}
