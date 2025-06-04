@@ -46,7 +46,7 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/jobber-auth-e2e/**/*"]
+      "exclude": ["apps/jobber-auth-e2e/**/*", "jobber-jobs-e2e/**/*"]
     }
   ]
 }
