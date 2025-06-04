@@ -1,7 +1,8 @@
-import { Mutation, Query } from "@nestjs/graphql";
+import { Args,Mutation, Query } from "@nestjs/graphql";
 import { Resolver } from "@nestjs/graphql";
 import { JobModel } from "./models/job.model";
 import { JobService } from "./job.service";
+import { ExceuteJobInput } from "./dto/execute-job";
 
 @Resolver()
 export class JobsResolver{
@@ -12,8 +13,8 @@ export class JobsResolver{
     }
 
     @Mutation(()=>JobModel)
-    async executeJob(){
-
+    async executeJob(@Args('executeJobInput')executeJobInput:ExceuteJobInput){
+        return this.jobsService.executeJob(executeJobInput.name);
     }
 }
 
