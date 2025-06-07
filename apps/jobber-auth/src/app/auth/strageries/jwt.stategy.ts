@@ -7,7 +7,7 @@ import { TokenPayload } from "../token-payload.interface";
 export class JwtStrategy extends PassportStrategy(Strategy){
    constructor(configServie:ConfigService){
     super({jwtFromRequest:ExtractJwt.fromExtractors([
-        (request:Request)=>request.cookies.Authenication,
+        (request:any)=>request.cookies?.Authenication || request.token,
     ]),secretOrKey:configServie.getOrThrow('JWT_SECRET')})
    }
    validate(payload:TokenPayload){
