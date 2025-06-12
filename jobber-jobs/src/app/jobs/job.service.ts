@@ -1,8 +1,9 @@
 import { DiscoveredClassWithMeta, DiscoveryService } from "@golevelup/nestjs-discovery";
-import { BadRequestException, Injectable, OnModuleInit } from "@nestjs/common";
+import { BadRequestException, Injectable, InternalServerErrorException, OnModuleInit } from "@nestjs/common";
 import { JOB_METADATA_KEY } from "../decorators/job.decorator";
 import { AbstractJob } from "./abstract.job";
 import { JobMeta } from "../interfaces/job-metadata.interface";
+import { FibonacciJob } from "./fibonacci/fibonacci.job";
 @Injectable()
 export class JobService implements OnModuleInit{
     private  jobs:DiscoveredClassWithMeta<JobMeta>[]=[];
@@ -18,10 +19,13 @@ export class JobService implements OnModuleInit{
   }
   async executeJob(name:string){
      const job = this.jobs.find(job=>job.meta.name===name)
-       if(!job){
+     if(!(job.discoveredClass.instance instanceof AbstractJob)){
+        throw new InternalServerErrorException('job is not instance of abstract job')
+     } 
+     if(!job){
          throw new BadRequestException(`Job ${name} does not exist`)
        }
-       await (job.discoveredClass.instance as AbstractJob).execute({},job.meta.name)
+       //await (job.discoveredClass.instance as AbstractJob<FibonacciJob>).execute({},job.meta.name)
        return job.meta
   }
 }

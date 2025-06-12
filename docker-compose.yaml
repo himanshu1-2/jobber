@@ -1,16 +1,15 @@
 services:
- postgres:
-  image : postgres
-  ports:
-   - 5432:5432
-  environment:
-   POSTGRES_PASSWORD: example
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
 
   pulsar:
-   image: apachepulsar/pulsar
-   command: >
+    image: apachepulsar/pulsar
+    command: >
       /pulsar/bin/pulsar standalone
-   ports :
-      - 6550:6550
-
-
+    ports:
+      - 6650:6650
+    restart: always

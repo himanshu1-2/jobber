@@ -5,12 +5,12 @@ import { JobModule } from './jobs/jobs.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 @Module({
-  imports: [ConfigModule,JobModule,GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-    
-      autoSchemaFile: true,
-    }),],
+  imports: [ConfigModule.forRoot({isGlobal:true}), JobModule, GraphQLModule.forRoot<ApolloDriverConfig>({
+    driver: ApolloDriver,
+
+    autoSchemaFile: true,
+  }),],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
