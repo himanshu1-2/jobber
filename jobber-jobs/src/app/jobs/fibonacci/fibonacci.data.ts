@@ -1,3 +1,7 @@
-export interface FibonacciJob{
-    iterations:number
+import { isNotEmpty, IsNotEmpty, IsNumber } from "class-validator";
+
+export class FibonacciJob{
+    @IsNotEmpty()
+    @IsNumber()
+    iterations:number;
 }

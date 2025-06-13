@@ -17,7 +17,7 @@ export class JobService implements OnModuleInit{
   getJobs(){
     return this.jobs.map((job)=>job.meta)
   }
-  async executeJob(name:string){
+  async executeJob(name:string,data:object){
      const job = this.jobs.find(job=>job.meta.name===name)
      if(!(job.discoveredClass.instance instanceof AbstractJob)){
         throw new InternalServerErrorException('job is not instance of abstract job')
@@ -25,7 +25,7 @@ export class JobService implements OnModuleInit{
      if(!job){
          throw new BadRequestException(`Job ${name} does not exist`)
        }
-       //await (job.discoveredClass.instance as AbstractJob<FibonacciJob>).execute({},job.meta.name)
+       await job.discoveredClass.instance.execute(data,job.meta.name)
        return job.meta
   }
 }

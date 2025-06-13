@@ -1,6 +1,8 @@
-import { OnModuleDestroy } from "@nestjs/common";
+import { Injectable, OnModuleDestroy } from "@nestjs/common";
 import {ConfigService} from '@nestjs/config'
 import {Client, Consumer, Producer,Message} from 'pulsar-client'
+
+@Injectable()
 export class PulsarClient implements OnModuleDestroy{
     private readonly producers:Producer[]=[];
     private readonly consumers:Consumer[]=[]
