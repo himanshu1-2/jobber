@@ -9,6 +9,6 @@ export class FibonacciConsumer extends PulsarConsumer<FibonacciData> implements 
     }
     protected async onMessage(dataa: FibonacciData): Promise<void> {
         const result = iterate(dataa.iterations)
-        this.logger.log(result)
+       // this.logger.log(result)
     }
 }

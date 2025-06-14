@@ -15,7 +15,7 @@ export class PulsarClient implements OnModuleDestroy{
     async createProducer(topic: string) {
         const producer = await this.client.createProducer({ topic })
         this.producers.push(producer)
-        return this.producers;
+        return producer
     }
     async createConsumer(topic:string,listener:(message:Message)=>void){
       const consumer = await this.client.subscribe({

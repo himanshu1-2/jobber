@@ -1,5 +1,5 @@
-import { INestApplication, Logger, ValidationPipe } from '@nestjs/common';
-
+import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { Logger } from 'nestjs-pino';
 import * as cookieParser from 'cookie-parser';
 import { ConfigService } from '@nestjs/config';
 
